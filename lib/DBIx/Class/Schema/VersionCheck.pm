@@ -1,4 +1,4 @@
-package DBICx::DH::VersionCheck;
+package DBIx::Class::Schema::VersionCheck;
 
 # ABSTRACT: compare database and schema version after connect() with DBIC::DeploymentHandler
 

@@ -5,4 +5,4 @@ use warnings;
 
 use Test::Most tests => 1;
 
-use_ok "DBICx::DH::VersionCheck";
+use_ok "DBIx::Class::Schema::VersionCheck";

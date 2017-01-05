@@ -12,7 +12,7 @@ use Test::Most;
 ok my $schema = DBICx::TestDatabase->new("MyApp::Schema");
 
 isa_ok $schema, "DBIx::Class::Schema";
-isa_ok $schema, "DBICx::DH::VersionCheck";
+isa_ok $schema, "DBIx::Class::Schema::VersionCheck";
 
 throws_ok { $schema->check_version } qr/no such table/,
   "database without version info";

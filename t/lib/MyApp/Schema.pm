@@ -5,6 +5,6 @@ use warnings;
 
 use base 'DBIx::Class::Schema';
 
-__PACKAGE__->load_components('+DBICx::DH::VersionCheck');
+__PACKAGE__->load_components('Schema::VersionCheck');
 
 1;
