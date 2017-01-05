@@ -1,45 +1,43 @@
-NAME
+# NAME
 
-    DBIx::Class::Schema::VersionCheck - compare database version to schema
-    with DBIC::DeploymentHandler
+DBIx::Class::Schema::VersionCheck - compare database version to schema with DBIC::DeploymentHandler
 
-VERSION
+# VERSION
 
-    version 0.001
+version 0.001
 
-SYNOPSIS
+# SYNOPSIS
 
-    Load this component in your schema:
+Load this component in your schema:
 
-        package MyApp::Schema;
-    
-        use base 'DBIx::Class::Schema';
-    
-        __PACKAGE__->load_components('Schema::CheckVersion');
+    package MyApp::Schema;
 
-    Then in the startup code of your application call check_version():
+    use base 'DBIx::Class::Schema';
 
-        my $schema = MyApp::Schema->connect( ... );
-        $schema->check_version();
+    __PACKAGE__->load_components('Schema::CheckVersion');
 
-METHODS
+Then in the startup code of your application call `check_version()`:
 
- check_version()
+    my $schema = MyApp::Schema->connect( ... );
+    $schema->check_version();
 
-    Uses DBIx::Class::DeploymentHandler to compare database_version with
-    schema_version. Dies if database is older or newer than your schema.
+# METHODS
 
-    Override _database_to_new or _database_to_old to change the behaviour
-    in either case.
+## check\_version()
 
-AUTHOR
+Uses [DBIx::Class::DeploymentHandler](https://metacpan.org/pod/DBIx::Class::DeploymentHandler) to compare `database_version`
+with `schema_version`. Dies if database is older or newer than your schema.
 
-    Daniel Böhmer <dboehmer@cpan.org>
+Override `_database_to_new` or `_database_to_old` to change the
+behaviour in either case.
 
-COPYRIGHT AND LICENSE
+# AUTHOR
 
-    This software is copyright (c) 2017 by Daniel Böhmer.
+Daniel Böhmer <dboehmer@cpan.org>
 
-    This is free software; you can redistribute it and/or modify it under
-    the same terms as the Perl 5 programming language system itself.
+# COPYRIGHT AND LICENSE
 
+This software is copyright (c) 2017 by Daniel Böhmer.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
