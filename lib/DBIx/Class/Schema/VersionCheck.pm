@@ -40,3 +40,32 @@ sub _database_too_old {
 }
 
 1;
+
+__END__
+
+=pod
+
+=head1 SYNOPSIS
+
+Load this component in your schema:
+
+    package MyApp::Schema;
+
+    use base 'DBIx::Class::Schema';
+
+    __PACKAGE__->load_components('Schema::CheckVersion');
+
+Then in the startup code of your application call C<check_version()>:
+
+    my $schema = MyApp::Schema->connect( ... );
+    $schema->check_version();
+
+=head1 METHODS
+
+=head2 check_version()
+
+Uses L<DBIx::Class::DeploymentHandler> to compare C<database_version>
+with C<schema_version>. Dies if database is older or newer than your schema.
+
+Override C<_database_to_new> or C<_database_to_old> to change the
+behaviour in either case.
