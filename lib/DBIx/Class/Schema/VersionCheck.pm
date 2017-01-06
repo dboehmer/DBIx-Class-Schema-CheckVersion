@@ -67,5 +67,5 @@ Then in the startup code of your application call C<check_version()>:
 Uses L<DBIx::Class::DeploymentHandler> to compare C<database_version>
 with C<schema_version>. Dies if database is older or newer than your schema.
 
-Override C<_database_to_new> or C<_database_to_old> to change the
+Override C<_database_too_new> or C<_database_too_old> to change the
 behaviour in either case.

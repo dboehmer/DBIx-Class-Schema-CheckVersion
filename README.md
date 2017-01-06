@@ -28,7 +28,7 @@ Then in the startup code of your application call `check_version()`:
 Uses [DBIx::Class::DeploymentHandler](https://metacpan.org/pod/DBIx::Class::DeploymentHandler) to compare `database_version`
 with `schema_version`. Dies if database is older or newer than your schema.
 
-Override `_database_to_new` or `_database_to_old` to change the
+Override `_database_too_new` or `_database_too_old` to change the
 behaviour in either case.
 
 # AUTHOR
