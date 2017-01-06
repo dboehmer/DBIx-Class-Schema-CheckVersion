@@ -21,6 +21,9 @@ sub check_version {
     elsif ( $dh->database_version > $dh->schema_version ) {
         $self->_database_too_new($dh);
     }
+    else {
+        $self->_database_up_to_date($dh);
+    }
 }
 
 sub _database_too_new {
@@ -38,6 +41,9 @@ sub _database_too_old {
       . $dh->database_version . " < "
       . $dh->schema_version;
 }
+
+# do nothing by default but allow overriding
+sub _database_up_to_date { }
 
 1;
 
@@ -69,3 +75,6 @@ with C<schema_version>. Dies if database is older or newer than your schema.
 
 Override C<_database_too_new> or C<_database_too_old> to change the
 behaviour in either case.
+
+If database matches schema version nothing is done or printed by default
+but you can override C<_database_up_to_date> to take action in this case.
