@@ -13,6 +13,11 @@ use DBIx::Class::DeploymentHandler;
 sub check_version {
     my $self = shift;
 
+    if ( $ENV{DBIC_SKIP_VERSION_CHECK} ) {
+        warn "Skipping DBIC schema version check";
+        return;
+    }
+
     my $dh = DBIx::Class::DeploymentHandler->new( schema => $self );
 
     if ( $dh->database_version < $dh->schema_version ) {
@@ -78,3 +83,8 @@ behaviour in either case.
 
 If database matches schema version nothing is done or printed by default
 but you can override C<_database_up_to_date> to take action in this case.
+
+Set environment variable C<DBIC_SKIP_VERSION_CHECK> to a true value to
+completely skip the check. That's convient to use on the command line
+and also avoids errors if the L<DBIx::Class::DeploymentHandler> meta
+table is missing in the database.

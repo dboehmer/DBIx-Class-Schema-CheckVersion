@@ -31,11 +31,17 @@ lives_ok { $schema->check_version } "database up to date";
 subtest "database too new" => sub {
     local $MyApp::Schema::VERSION = 1;
     throws_ok { $schema->check_version } qr/new/, "throws exception";
+
+    local $ENV{DBIC_SKIP_VERSION_CHECK} = 1;
+    lives_ok { $schema->check_version } "except with DBIC_SKIP_VERSION_CHECK";
 };
 
 subtest "database too old" => sub {
     local $MyApp::Schema::VERSION = 3;
     throws_ok { $schema->check_version } qr/old/, "throws exception";
+
+    local $ENV{DBIC_SKIP_VERSION_CHECK} = 1;
+    lives_ok { $schema->check_version } "except with DBIC_SKIP_VERSION_CHECK";
 };
 
 my $called_up_to_date = 0;
