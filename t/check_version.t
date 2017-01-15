@@ -28,13 +28,15 @@ $dh->install;
 
 lives_ok { $schema->check_version } "database up to date";
 
-{
+subtest "database too new" => sub {
     local $MyApp::Schema::VERSION = 1;
-    throws_ok { $schema->check_version } qr/new/, "database too new";
+    throws_ok { $schema->check_version } qr/new/, "throws exception";
+};
 
+subtest "database too old" => sub {
     local $MyApp::Schema::VERSION = 3;
-    throws_ok { $schema->check_version } qr/old/, "database too old";
-}
+    throws_ok { $schema->check_version } qr/old/, "throws exception";
+};
 
 my $called_up_to_date = 0;
 local *MyApp::Schema::_database_up_to_date = sub { $called_up_to_date++ };
